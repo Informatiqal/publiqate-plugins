@@ -1,4 +1,4 @@
-# Publiqate-mailer
+# Publiqate-smtp
 
 Generic SMTP plugin for `Publiqate`
 

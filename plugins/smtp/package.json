@@ -1,5 +1,5 @@
 {
-  "name": "@informatiqal/publiqate-mailer",
+  "name": "@informatiqal/publiqate-smtp",
   "description": "SMTP Publiqate plugin",
   "version": "0.0.1",
   "scripts": {
