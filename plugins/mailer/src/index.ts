@@ -4,6 +4,12 @@ import { Logger } from "winston";
 import { readFileSync } from "fs";
 import ejs from "ejs";
 
+export const meta = {
+  author: "Informatiqal",
+  version: "0.1.0",
+  name: "smtp",
+};
+
 export async function implementation(
   callback: Callback,
   notification: NotificationData,

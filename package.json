@@ -1,7 +1,7 @@
 {
-  "name": "notifiqation-plugins",
+  "name": "publiqate-plugins",
   "version": "1.0.0",
-  "description": "Repo containing official notifiQation plugins",
+  "description": "Repo containing official Publiqate plugins",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,2 +1,3 @@
-# notifiqation-plugins
-Repo containing official notifiQation plugins
+# Publiqate-plugins
+
+Repo containing official Publiqate plugins

@@ -1,6 +1,6 @@
 {
-  "name": "@informatiqal/notifiqation-mailer",
-  "description": "SMTP notifiQation plugin",
+  "name": "@informatiqal/publiqate-mailer",
+  "description": "SMTP Publiqate plugin",
   "version": "0.0.1",
   "scripts": {
     "build": "rollup -c"
@@ -38,12 +38,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/informatiqal/notifiqation-plugins.git"
+    "url": "https://github.com/informatiqal/publiqate-plugins.git"
   },
   "bugs": {
-    "url": "https://github.com/informatiqal/notifiqation-plugins/issues"
+    "url": "https://github.com/informatiqal/publiqate-plugins/issues"
   },
-  "homepage": "https://informatiqal.com/notifiqation/",
+  "homepage": "https://informatiqal.com/publiqate/",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-json": "^6.1.0",

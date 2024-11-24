@@ -1,6 +1,6 @@
-# notifiqation-mailer
+# Publiqate-mailer
 
-Generic SMTP plugin for `notifiQation`
+Generic SMTP plugin for `Publiqate`
 
 ## Build and Installation
 
@@ -12,9 +12,9 @@ npm run build
 
 Once the build process is complete the compiled code will be available in `plugins -> mailer -> dist` folder.
 
-Copy the content of the `dist` folder somewhere on the server, where `notifiQation` is running and specify the location from where `notifiQation` will load the plugin.
+Copy the content of the `dist` folder somewhere on the server, where `Publiqate` is running and specify the location from where `Publiqate` will load the plugin.
 
-Once the config is set either restart the `notifiQation` service or visit the admin UI and press "Refresh config".
+Once the config is set either restart the `Publiqate` service or visit the admin UI and press "Refresh config".
 
 Example config:
 
