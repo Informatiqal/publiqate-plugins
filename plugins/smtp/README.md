@@ -1,16 +1,16 @@
-# Publiqate-smtp
+# Publiqate SMTP
 
 Generic SMTP plugin for `Publiqate`
 
 ## Build and Installation
 
-Clone this repository. Navigate to the `plugins -> mailer` folder and run:
+Clone this repository. Navigate to the `plugins -> smtp` folder and run:
 
 ```bash
 npm run build
 ```
 
-Once the build process is complete the compiled code will be available in `plugins -> mailer -> dist` folder.
+Once the build process is complete the compiled code will be available in `plugins -> smtp -> dist` folder.
 
 Copy the content of the `dist` folder somewhere on the server, where `Publiqate` is running and specify the location from where `Publiqate` will load the plugin.
 
@@ -21,8 +21,7 @@ Example config:
 ```yaml
 ...
 plugins:
-  - name: mail
-    path: c:\path\to\mailer\dist\plugin\index.js
+  - c:\path\to\smtp\plugin\dist\index.js
 ...
 notifications:
   - type: Stream

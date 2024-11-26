@@ -21,7 +21,7 @@ export interface AuthUserPass {
   pass: string;
 }
 
-export interface Callback {
+export interface SMTPCallback {
   details: {
     host: string;
     port?: number;
@@ -37,11 +37,22 @@ export interface Callback {
     html?: string;
     /**
      * Path to the EJS template file.
-     * 
+     *
      * If both "html" and "template" properties exists then "template" is with priority
      */
     template: string;
     headers?: { [k: string]: string };
+  };
+}
+
+export interface S3Callback {
+  details: {
+    auth: S3Auth;
+    region: string;
+    bucket: string;
+    acl?: string;
+    key?: string;
+    serverSideEncryption?: string;
   };
 }
 
@@ -103,4 +114,9 @@ export interface NotificationData {
   environment: QlikComm;
   data: [];
   entities: any[];
+}
+
+export interface S3Auth {
+  accessKeyId: string;
+  secretAccessKey: string;
 }

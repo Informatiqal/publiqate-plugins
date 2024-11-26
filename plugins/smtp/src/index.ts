@@ -1,21 +1,28 @@
 import nodemailer from "nodemailer";
-import { AuthUserPass, Callback, NotificationData } from "../../../interfaces";
+import {
+  AuthUserPass,
+  SMTPCallback,
+  NotificationData,
+} from "../../../interfaces";
 import { Logger } from "winston";
 import { readFileSync } from "fs";
 import ejs from "ejs";
 
 export const meta = {
   author: "Informatiqal",
-  version: "0.1.0",
+  version: "0.1.1",
   name: "smtp",
 };
 
 export async function implementation(
-  callback: Callback,
+  callback: SMTPCallback,
   notification: NotificationData,
   logger: Logger
 ) {
   try {
+    const n = JSON.parse(JSON.stringify(notification));
+    delete n.config.callback;
+
     if (!(callback.details.auth as AuthUserPass).pass)
       callback.details.auth["type"] = "OAuth2";
 
@@ -66,7 +73,7 @@ export async function implementation(
       }
 
       try {
-        mailOptions.html = await ejs.render(templateRaw, notification, {});
+        mailOptions.html = await ejs.render(templateRaw, n, {});
       } catch (e) {
         logger.error(e);
         return;
@@ -78,7 +85,7 @@ export async function implementation(
 
       logger.debug(
         `Mail send for notification "${
-          notification.config.id
+          n.config.id
         }" to ${callback.details.to.join(",")}`
       );
     } catch (e) {
