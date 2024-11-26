@@ -4,7 +4,7 @@ import { NotificationData, S3Callback } from "../../../interfaces";
 
 export const meta = {
   author: "Informatiqal",
-  version: "0.1.0",
+  version: "0.1.1",
   name: "s3",
 };
 
