@@ -1,0 +1,58 @@
+{
+  "name": "example-plugin-name",
+  "description": "short description",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "qlik",
+    "sense",
+    "qlik-sense",
+    "qlik sense",
+    "repo api",
+    "repository",
+    "api",
+    "notification"
+  ],
+  "files": [
+    "dist",
+    "*.json",
+    "*.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "!tsconfig.json",
+    "!renovate.json"
+  ],
+  "author": {
+    "email": "contribute@test.com",
+    "name": "My Name",
+    "url": "https://my-web-site.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/informatiqal/publiqate-plugins.git"
+  },
+  "bugs": {
+    "url": "https://github.com/informatiqal/publiqate-plugins/issues"
+  },
+  "homepage": "https://informatiqal.com/publiqate/",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "rollup-plugin-delete": "^2.1.0",
+    "tslib": "^2.8.1",
+    "winston": "^3.17.0"
+  }
+}

@@ -2,7 +2,7 @@
 
 Repo containing official [Publiqate](https://github.com/Informatiqal/publiqate) plugins.
 
-- [publiqate-smtp](./plugins/smtp/README.md) - generic SMTP client
+- [smtp](./plugins/smtp/README.md) - generic SMTP client
 - [S3](./plugins/s3/README.md) - S3 client
 
 ## Installation
