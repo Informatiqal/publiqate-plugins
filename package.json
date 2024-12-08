@@ -9,5 +9,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "workspaces": ["./plugins/*"]
+  "workspaces": [
+    "./plugins/*"
+  ],
+  "devDependencies": {
+    "vitest": "^0.33.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  }
 }

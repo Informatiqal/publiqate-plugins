@@ -52,6 +52,9 @@
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
     "ejs": "^3.1.10",
+    "handlebars": "^4.7.8",
+    "mustache": "^4.2.0",
+    "pug": "^3.0.3",
     "rollup-plugin-delete": "^2.1.0",
     "tslib": "^2.8.1",
     "winston": "^3.17.0"

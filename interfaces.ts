@@ -21,7 +21,7 @@ export interface AuthUserPass {
   pass: string;
 }
 
-export interface SMTPCallback {
+export interface SMTPPluginDetails {
   details: {
     host: string;
     port?: number;
@@ -45,7 +45,7 @@ export interface SMTPCallback {
   };
 }
 
-export interface S3Callback {
+export interface S3PluginDetails {
   details: {
     auth: S3Auth;
     region: string;
@@ -56,7 +56,7 @@ export interface S3Callback {
   };
 }
 
-export interface Notification {
+export interface NotificationRepo {
   type: NotificationObjectType;
   id: string;
   environment: string;
@@ -77,6 +77,69 @@ export interface Notification {
     details?: any;
   }[];
 }
+
+export type NotificationObjectTypeExt = NotificationObjectType | "DataAlert";
+
+export interface DataAlertScalarCondition {
+  type: "scalar";
+  name: string;
+  description?: string;
+  expression: string;
+  results: {
+    value: string | number;
+    operator?: "<" | ">" | ">=" | "<=" | "==" | "!=" | "=" | "<>";
+    variation?: string;
+  }[];
+}
+
+export interface DataAlertListCondition {
+  type: "list";
+  name: string;
+  description?: string;
+  fieldName: string;
+  operation: "present" | "missing";
+  values: (string | number)[];
+}
+
+export interface DataAlertFieldSelection {
+  field: string;
+  values: (string | number)[];
+}
+
+export interface DataAlertBookmarkApply {
+  bookmark: string;
+}
+
+export interface DataAlertCondition {
+  selections: (DataAlertFieldSelection | DataAlertBookmarkApply)[];
+  conditions: (DataAlertScalarCondition | DataAlertListCondition)[];
+  options?: {
+    user?: string;
+  };
+}
+
+export interface NotificationDataAlert {
+  type: NotificationObjectTypeExt;
+  id: string;
+  changeType?: "Update";
+  handle?: string;
+  environment: string;
+  name?: string;
+  filter?: string;
+  "data-conditions": DataAlertCondition[];
+  options?: {
+    disableCors?: boolean;
+    enabled?: boolean;
+    whitelist?: string[];
+  };
+  callbacks: {
+    type: string;
+    enabled?: boolean;
+    details?: any;
+  }[];
+}
+
+export type Notification = NotificationRepo | NotificationDataAlert;
 
 export type NotificationChangeType = "Add" | "Update" | "Delete";
 export type NotificationObjectType =
@@ -112,11 +175,19 @@ export interface QlikComm {
 export interface NotificationData {
   config: Notification;
   environment: QlikComm;
-  data: [];
+  data: any[];
   entities: any[];
 }
 
 export interface S3Auth {
   accessKeyId: string;
   secretAccessKey: string;
+}
+
+export interface HTMLPluginDetails {
+  details: {
+    template: string;
+    path: string;
+    engine?: "ejs" | "pug" | "mustache" | "handlebars";
+  };
 }

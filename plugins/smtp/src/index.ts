@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import {
   AuthUserPass,
-  SMTPCallback,
+  SMTPPluginDetails,
   NotificationData,
 } from "../../../interfaces";
 import { Logger } from "winston";
@@ -10,12 +10,12 @@ import ejs from "ejs";
 
 export const meta = {
   author: "Informatiqal",
-  version: "0.1.1",
+  version: "0.1.2",
   name: "smtp",
 };
 
 export async function implementation(
-  callback: SMTPCallback,
+  callback: SMTPPluginDetails,
   notification: NotificationData,
   logger: Logger
 ) {

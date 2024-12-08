@@ -1,15 +1,15 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { Logger } from "winston";
-import { NotificationData, S3Callback } from "../../../interfaces";
+import { NotificationData, S3PluginDetails } from "../../../interfaces";
 
 export const meta = {
   author: "Informatiqal",
-  version: "0.1.1",
+  version: "0.1.2",
   name: "s3",
 };
 
 export async function implementation(
-  callback: S3Callback,
+  callback: S3PluginDetails,
   notification: NotificationData,
   logger: Logger
 ) {
