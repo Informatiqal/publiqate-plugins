@@ -22,6 +22,8 @@ export default {
         del({
             targets: "dist/*",
         }),
-        typescript()
+        typescript({
+            allowSyntheticDefaultImports: true
+        })
     ],
 };

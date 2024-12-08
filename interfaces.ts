@@ -21,29 +21,55 @@ export interface AuthUserPass {
   pass: string;
 }
 
-export interface SMTPPluginDetails {
-  details: {
-    host: string;
-    port?: number;
-    secure?: boolean;
-    auth: AuthUserPass | Auth3LO | Auth2LO;
-    proxy?: string;
-    from: string;
-    to: string[];
-    subject: string;
-    /**
-     * If both "html" and "template" properties exists then "template" is with priority
-     */
-    html?: string;
-    /**
-     * Path to the EJS template file.
-     *
-     * If both "html" and "template" properties exists then "template" is with priority
-     */
-    template: string;
-    headers?: { [k: string]: string };
-  };
+export interface SMTPMainDetails {
+  host: string;
+  port?: number;
+  secure?: boolean;
+  auth: AuthUserPass | Auth3LO | Auth2LO;
+  proxy?: string;
+  from: string;
+  to: string[];
+  subject: string;
+  headers?: { [k: string]: string };
 }
+
+export interface SMTPTemplateDetails extends SMTPMainDetails {
+  template: string;
+  engine: "ejs" | "pug" | "mustache" | "handlebars";
+}
+
+export interface SMTP_HTMLDetails extends SMTPMainDetails {
+  html: string;
+}
+
+export interface SMTPPluginDetails {
+  details: SMTPTemplateDetails | SMTP_HTMLDetails;
+}
+
+// export interface SMTPPluginDetails {
+//   details: {
+//     host: string;
+//     port?: number;
+//     secure?: boolean;
+//     auth: AuthUserPass | Auth3LO | Auth2LO;
+//     proxy?: string;
+//     from: string;
+//     to: string[];
+//     subject: string;
+//     /**
+//      * If both "html" and "template" properties exists then "template" is with priority
+//      */
+//     html?: string;
+//     /**
+//      * Path to the EJS template file.
+//      *
+//      * If both "html" and "template" properties exists then "template" is with priority
+//      */
+//     template: string;
+//     engine?: "ejs" | "pug" | "mustache" | "handlebars";
+//     headers?: { [k: string]: string };
+//   };
+// }
 
 export interface S3PluginDetails {
   details: {

@@ -3,14 +3,18 @@ import {
   AuthUserPass,
   SMTPPluginDetails,
   NotificationData,
+  SMTPTemplateDetails,
 } from "../../../interfaces";
 import { Logger } from "winston";
 import { readFileSync } from "fs";
 import ejs from "ejs";
+import * as handlebars from "handlebars";
+import * as pug from "pug";
+import Mustache from "mustache";
 
 export const meta = {
   author: "Informatiqal",
-  version: "0.1.2",
+  version: "1.0.0",
   name: "smtp",
 };
 
@@ -61,19 +65,56 @@ export async function implementation(
       logger.error(e);
     }
 
-    if (callback.details.html) mailOptions.html = callback.details.html;
+    if (callback.details.hasOwnProperty("html"))
+      mailOptions.html = callback.details["html"];
 
-    if (callback.details.template) {
+    let templateEngine: SMTPTemplateDetails["engine"] = "handlebars";
+
+    if (callback.details.hasOwnProperty("template")) {
+      if (callback.details.hasOwnProperty("engine")) {
+        templateEngine = callback.details["engine"];
+      } else {
+        logger.debug(
+          `No template engine was specified. Using "handlebars" as default`
+        );
+      }
+
+      if (
+        templateEngine != "ejs" &&
+        templateEngine != "handlebars" &&
+        templateEngine != "mustache" &&
+        templateEngine != "pug"
+      ) {
+        logger.error(
+          `${notification.config.id}|Invalid template engine "${templateEngine}". Valid values are: ejs, handlebars, pug or mustache`
+        );
+        return;
+      }
+
       let templateRaw = "";
       try {
-        templateRaw = readFileSync(callback.details.template).toString();
+        templateRaw = readFileSync(callback.details["template"]).toString();
       } catch (e) {
         logger.error(e);
         return;
       }
 
       try {
-        mailOptions.html = await ejs.render(templateRaw, n, {});
+        if (templateEngine == "ejs")
+          mailOptions.html = await ejs.render(templateRaw, n, {});
+
+        if (templateEngine == "handlebars") {
+          const template = handlebars.compile(templateRaw);
+          mailOptions.html = template(n);
+        }
+
+        if (templateEngine == "mustache")
+          //@ts-ignore
+          mailOptions.html = Mustache.render(templateRaw, n);
+
+        if (templateEngine == "pug")
+          //@ts-ignore
+          mailOptions.html = pug.render(templateRaw, n);
       } catch (e) {
         logger.error(e);
         return;
@@ -84,9 +125,7 @@ export async function implementation(
       await transporter.sendMail(mailOptions);
 
       logger.debug(
-        `Mail send for notification "${
-          n.config.id
-        }" to ${callback.details.to.join(",")}`
+        `${n.config.id}|Mail send to ${callback.details.to.join(",")}`
       );
     } catch (e) {
       logger.error(e);

@@ -1,9 +1,9 @@
 import { Logger } from "winston";
 import { readFileSync, writeFileSync } from "fs";
 import ejs from "ejs";
-import handlebars from "handlebars";
-import pug from "pug";
-import mustache from "mustache";
+import * as handlebars from "handlebars";
+import * as pug from "pug";
+import Mustache from "mustache";
 
 import { HTMLPluginDetails, NotificationData } from "../../../interfaces";
 
@@ -79,9 +79,12 @@ export async function implementation(
       }
 
       if (templateEngine == "mustache")
-        htmlContent = mustache.render(templateRaw, n);
+        //@ts-ignore
+        htmlContent = Mustache.render(templateRaw, n);
 
-      if (templateEngine == "pug") htmlContent = pug.render(templateRaw, n);
+      if (templateEngine == "pug")
+        //@ts-ignore
+        htmlContent = pug.render(templateRaw, n);
     } catch (e) {
       logger.error(e);
       return;

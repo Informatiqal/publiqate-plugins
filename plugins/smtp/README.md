@@ -38,6 +38,7 @@ notifications:
           subject: "Stream updated"
           # html: <h1>Stream updated</h1><br><div>Stream has been updated</div>
           template: c:\path\to\template.ejs # see Templates section for details
+          engine: handlebars # or ejs, pug, mustache
           auth:
             user: some-user
             pass: secret-password
@@ -88,17 +89,49 @@ For more information have a look at [2LO authentication (service accounts)](http
 
 ## Templates
 
-Provide `template` property to load [EJS](https://ejs.co/) template file.
+The plugin support 4 template engines:
 
-Example to render list of names for all entities in the notification:
+- [ejs](https://ejs.co/)
+- [handlebars](https://handlebarsjs.com/guide/) - **default**
+- [pug](https://pugjs.org/api/getting-started.html)
+- [mustache](https://github.com/janl/mustache.js)
+
+For each template engine error log entry will be generated if the template fails to compile/render.
+
+Examples how to render list of names for all entities in the notification for each template engine:
+
+### [EJS](https://ejs.co/)
 
 ```ejs
-<ul>
-  <% entities.forEach((entity,index) => {%>
-  <li><%= entity.name %></li>
-  <% }) %>
+<ul><% entities.forEach((entity,index) => {%>
+  <li><%= entity.details.name %></li><% }) %>
 </ul>
-
 ```
 
-Error log entry will be generated if the template fails to compile/render.
+### [Handlebars](https://handlebarsjs.com/guide/)
+
+```handlebars
+<ul>
+  {{#each entities}}
+    <li>{{this.details.name}}</li>
+  {{/each}}
+</ul>
+```
+
+### [Pug](https://pugjs.org/api/getting-started.html)
+
+```pug
+ul
+  each n in entities
+    li= n.details.name
+```
+
+### [Mustache](https://github.com/janl/mustache.js)
+
+```mustache
+<ul>
+  {{#entities}}
+    <li>{{details.name}}</li>
+  {{/entities}}
+</ul>
+```

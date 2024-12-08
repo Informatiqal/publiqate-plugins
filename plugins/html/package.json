@@ -1,7 +1,7 @@
 {
   "name": "@informatiqal/publiqate-html",
   "description": "Publiqate plugin to generate HTML files",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "build": "rollup -c"
   },
