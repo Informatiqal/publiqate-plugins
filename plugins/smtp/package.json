@@ -1,7 +1,7 @@
 {
   "name": "@informatiqal/publiqate-smtp",
   "description": "SMTP Publiqate plugin",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "build": "rollup -c"
   },
@@ -42,7 +42,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/informatiqal/publiqate-plugins.git"
+    "url": "git+https://github.com/informatiqal/publiqate-plugins.git"
   },
   "bugs": {
     "url": "https://github.com/informatiqal/publiqate-plugins/issues"
