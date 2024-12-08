@@ -4,6 +4,7 @@ Repo containing official [Publiqate](https://github.com/Informatiqal/publiqate) 
 
 - [smtp](./plugins/smtp/README.md) - generic SMTP client
 - [S3](./plugins/s3/README.md) - S3 client
+- [html](./plugins/html/README.md) - generate html files using `ejs`, `handlebars`, `pug` or `mustache` templating engines
 
 ## Installation
 
