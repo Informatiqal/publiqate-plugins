@@ -50,7 +50,7 @@
   "homepage": "https://informatiqal.com/publiqate/",
   "devDependencies": {
     "@aws-sdk/client-s3": "^3.705.0",
-    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.3.0",
     "@rollup/plugin-typescript": "^12.1.1",
